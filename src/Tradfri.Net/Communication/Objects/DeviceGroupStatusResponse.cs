@@ -14,8 +14,8 @@ namespace Tradfri.Net.Communication.Objects
         [TradfriAttribute(TradfriAttribute.Name)]
         public string Name { get; set; }
 
-        [TradfriAttribute(TradfriAttribute.LightState)]
-        public int LightState { get; set; }
+        [TradfriAttribute(TradfriAttribute.DeviceState)]
+        public int State { get; set; }
 
         [TradfriAttribute(TradfriAttribute.LightDimmer)]
         public int LightDimmer { get; set; }

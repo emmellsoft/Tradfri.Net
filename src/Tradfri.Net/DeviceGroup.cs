@@ -39,7 +39,7 @@ namespace Tradfri.Net
             return new DeviceGroupStatus(
                 r.Name,
                 r.CreatedAt,
-                r.LightState,
+                r.State,
                 r.LightDimmer,
                 GetMood(r.ActiveMoodId),
                 await _getDevicesFunc(r.Devices.DeviceIds.Ids));

@@ -63,7 +63,7 @@ namespace Tradfri.Net
         {
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = turnedOn ? 1 : 0
+                State = turnedOn ? 1 : 0
             });
         }
 
@@ -76,7 +76,7 @@ namespace Tradfri.Net
 
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = brightness > 0 ? 1 : 0,
+                State = brightness > 0 ? 1 : 0,
                 Dimmer = brightness
             });
         }
@@ -90,7 +90,7 @@ namespace Tradfri.Net
 
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = brightness > 0 ? 1 : 0,
+                State = brightness > 0 ? 1 : 0,
                 Dimmer = brightness,
                 Mireds = temperature.Mireds
             });
@@ -105,7 +105,7 @@ namespace Tradfri.Net
 
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = brightness > 0 ? 1 : 0,
+                State = brightness > 0 ? 1 : 0,
                 Dimmer = brightness,
                 ColorHex = color.Value
             });
@@ -120,7 +120,7 @@ namespace Tradfri.Net
 
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = brightness > 0 ? 1 : 0,
+                State = brightness > 0 ? 1 : 0,
                 Dimmer = brightness,
                 ColorX = color.X,
                 ColorY = color.Y
@@ -136,7 +136,7 @@ namespace Tradfri.Net
 
             return SendStatusUpdate(new LightStatusUpdate
             {
-                LightState = brightness > 0 ? 1 : 0,
+                State = brightness > 0 ? 1 : 0,
                 Dimmer = brightness,
                 ColorHue = color.Hue,
                 ColorSaturation = color.Saturation

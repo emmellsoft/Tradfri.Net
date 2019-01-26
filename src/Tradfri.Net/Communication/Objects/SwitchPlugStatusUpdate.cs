@@ -4,7 +4,7 @@ namespace Tradfri.Net.Communication.Objects
 {
     internal class SwitchPlugStatusUpdate
     {
-        [TradfriAttribute(TradfriAttribute.LightState)]
+        [TradfriAttribute(TradfriAttribute.DeviceState)]
         public int State { get; set; }
 
         [TradfriAttribute(TradfriAttribute.LightDimmer)]

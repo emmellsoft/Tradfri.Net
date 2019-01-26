@@ -4,8 +4,8 @@ namespace Tradfri.Net.Communication.Objects
 {
     internal class LightStatusUpdate
     {
-        [TradfriAttribute(TradfriAttribute.LightState)]
-        public int? LightState { get; set; }
+        [TradfriAttribute(TradfriAttribute.DeviceState)]
+        public int? State { get; set; }
 
         [TradfriAttribute(TradfriAttribute.LightDimmer)]
         public int? Dimmer { get; set; }

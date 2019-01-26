@@ -18,6 +18,7 @@
         CurrentTimeISO8601 = 9060,
 
         DeviceInfo = 3,
+        DeviceState = 5850, // 0 or 1
 
         GatewayTimeSource = 9071,
         GatewayUpdateProgress = 9055,
@@ -40,7 +41,6 @@
         GatewayFactoryDefaults = 9031, //gw to factory defaults
         GatewayFactoryDefaultsMinMaxMSR = 5605,
 
-        LightState = 5850, // 0 or 1
         LightDimmer = 5851, // Dimmer, not following spec: 0..255
         LightColorHex = 5706, // string representing a value in hex
         LightColorX = 5709,
