@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Com.AugustCellars.CoAP.Net;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using Com.AugustCellars.CoAP.Net;
 using Tradfri.Net.Communication.Objects;
 
 namespace Tradfri.Net.Communication

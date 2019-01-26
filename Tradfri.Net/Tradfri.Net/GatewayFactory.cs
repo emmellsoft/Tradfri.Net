@@ -1,6 +1,7 @@
 ﻿using Com.AugustCellars.CoAP;
 using Com.AugustCellars.CoAP.DTLS;
 using Com.AugustCellars.COSE;
+using Microsoft.Extensions.Logging;
 using PeterO.Cbor;
 using System;
 using System.Net;
@@ -27,7 +28,7 @@ namespace Tradfri.Net
         {
             try
             {
-                _logger.Debug($"Connecting to {_ipAddress} as \"{_clientIdentity}\" to generate new PSK");
+                _logger.LogInformation($"Connecting to {_ipAddress} as \"{_clientIdentity}\" to generate new PSK");
 
                 var authKey = new OneKey();
                 authKey.Add(CoseKeyKeys.KeyType, GeneralValues.KeyType_Octet);
@@ -58,7 +59,7 @@ namespace Tradfri.Net
 
                     AuthResponse authResponse = Json.Deserialize<AuthResponse>(response.PayloadString);
 
-                    _logger.Debug($"PSK generated: \"{authResponse.Psk}\"");
+                    _logger.LogInformation($"PSK generated: \"{authResponse.Psk}\"");
 
                     return authResponse.Psk;
                 }
@@ -71,7 +72,7 @@ namespace Tradfri.Net
 
         public IGateway Connect(string psk)
         {
-            _logger.Debug($"Connecting to {_ipAddress} as \"{_clientIdentity}\" with PSK \"{psk}\"");
+            _logger.LogInformation($"Connecting to {_ipAddress} as \"{_clientIdentity}\" with PSK \"{psk}\"");
 
             var authKey = new OneKey();
             authKey.Add(CoseKeyKeys.KeyType, GeneralValues.KeyType_Octet);

@@ -1,4 +1,5 @@
 ﻿using Com.AugustCellars.CoAP.Net;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

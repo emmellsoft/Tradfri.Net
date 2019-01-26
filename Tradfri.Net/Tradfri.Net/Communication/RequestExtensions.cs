@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Com.AugustCellars.CoAP;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
-using Com.AugustCellars.CoAP;
 using Tradfri.Net.Communication.Serialization;
 
 namespace Tradfri.Net.Communication
@@ -50,7 +51,7 @@ namespace Tradfri.Net.Communication
 
         private static Task<Response> ExecuteClientAction(string method, Request request, Func<CoapClient, Response> getResponse)
         {
-            request.Logger.Debug(method + " " + request.GetUriPath());
+            request.Logger.LogDebug(method + " " + request.GetUriPath());
             Response response = getResponse(CreateClient(request));
             if (response == null)
             {
@@ -73,12 +74,12 @@ namespace Tradfri.Net.Communication
 
         private static void Log(ILogger logger, Response response)
         {
-            logger.Debug(response.PayloadString);
+            logger.LogDebug(response.PayloadString);
         }
 
         private static void Log(ILogger logger, object obj)
         {
-            logger.Debug(Json.SerializeDebug(obj));
+            logger.LogDebug(Json.SerializeDebug(obj));
         }
     }
 }
