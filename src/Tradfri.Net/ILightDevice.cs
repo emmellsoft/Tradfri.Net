@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Tradfri.Net
 {
@@ -11,6 +12,8 @@ namespace Tradfri.Net
         bool CanSetTemperature { get; }
 
         bool CanSetColor { get; }
+
+        event Action<ILightDevice, LightStatus> LightStatusChanged;
 
         LightStatus LastLightStatus { get; }
 

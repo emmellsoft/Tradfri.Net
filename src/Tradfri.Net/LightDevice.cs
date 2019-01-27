@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Tradfri.Net.Communication;
 using Tradfri.Net.Communication.Objects;
+using Tradfri.Net.Communication.Serialization;
 
 namespace Tradfri.Net
 {
@@ -40,6 +41,19 @@ namespace Tradfri.Net
         public bool CanSetColor { get; }
 
         public LightStatus LastLightStatus { get; private set; }
+
+        public event Action<ILightDevice, LightStatus> LightStatusChanged
+        {
+            add => DeviceStatusObserver<ILightDevice, LightStatus>.AddStatusEvent(this, value, DeviceRequest, ConvertAndHandleObservedStatus);
+            remove => DeviceStatusObserver<ILightDevice, LightStatus>.RemoveStatusEvent(this, value);
+        }
+
+        private LightStatus ConvertAndHandleObservedStatus(string payloadString)
+        {
+            DeviceResponse deviceResponse = Json.Deserialize<DeviceResponse>(payloadString);
+            UpdateLastLightStatus(deviceResponse);
+            return LastLightStatus;
+        }
 
         public async Task<LightStatus> GetLightStatus()
         {

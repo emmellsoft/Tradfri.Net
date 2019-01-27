@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Tradfri.Net.Communication;
 using Tradfri.Net.Communication.Objects;
+using Tradfri.Net.Communication.Serialization;
 
 namespace Tradfri.Net
 {
@@ -13,6 +15,19 @@ namespace Tradfri.Net
         }
 
         public PlugStatus LastPlugStatus { get; private set; }
+
+        public event Action<IPlugDevice, PlugStatus> PlugStatusChanged
+        {
+            add => DeviceStatusObserver<IPlugDevice, PlugStatus>.AddStatusEvent(this, value, DeviceRequest, ConvertAndHandleObservedStatus);
+            remove => DeviceStatusObserver<IPlugDevice, PlugStatus>.RemoveStatusEvent(this, value);
+        }
+
+        private PlugStatus ConvertAndHandleObservedStatus(string payloadString)
+        {
+            DeviceResponse deviceResponse = Json.Deserialize<DeviceResponse>(payloadString);
+            UpdateLastPlugStatus(deviceResponse);
+            return LastPlugStatus;
+        }
 
         public async Task<PlugStatus> GetPlugStatus()
         {

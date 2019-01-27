@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Tradfri.Net
 {
     public interface IPlugDevice : IDevice
     {
+        event Action<IPlugDevice, PlugStatus> PlugStatusChanged;
+
         PlugStatus LastPlugStatus { get; }
 
         Task<PlugStatus> GetPlugStatus();

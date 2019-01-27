@@ -45,6 +45,12 @@ namespace Tradfri.Net.Communication
             return response.StatusCode == StatusCode.Changed;
         }
 
+        public static void InitObserver(this Request request, EndpointObserver endpointObserver)
+        {
+            var coapClientHelper = new CoapClientHelper("Observe", request);
+            endpointObserver.ObserveRelation = coapClientHelper.Client.ObserveAsync(endpointObserver.Notify, coapClientHelper.FailCallback);
+        }
+
         private static void Log(ILogger logger, Response response)
         {
             logger.LogDebug(response.PayloadString);
